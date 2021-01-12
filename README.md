@@ -1,4 +1,4 @@
-# pokemon
+# new
 
 ## Project setup
 ```
