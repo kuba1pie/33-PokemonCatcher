@@ -10,34 +10,21 @@
         ></b-form-input>
       </b-form-group>
     </b-form>
-    <b-button type="submit" @click="postPost" variant="primary"
-      >Submit</b-button
+
+    <router-link :to="`/catcher/` + this.nickname">
+      <b-button type="submit" variant="primary">Submit</b-button></router-link
     >
   </div>
 </template>
 
 <script lang="ts">
-import axios from "axios";
-
 export default {
   name: "FormNickname",
   data: function() {
     return { nickname: "" };
   },
-  methods: {
-    postPost() {
-      axios
-        .get(
-          "https://pokeapi.co/api/v2/pokemon?limit=5&offset=" +
-            this.nickname.length * 10
-        )
-        .then(response => {
-          console.log(response.data.results);
-        })
-        .catch(e => {
-          this.errors.push(e);
-        });
-    }
+  props: {
+    pokemons: Object
   }
 };
 </script>
