@@ -1,11 +1,19 @@
 <template>
   <div id="FormNickname">
-    <b-table striped hover :items="pokemons"></b-table>
+    Hello, {{ this.$route.params.id }}!
+    <b-table striped hover :items="pokemons"
+      ><Pokemon v-bind:pokemonId="this.pokemons"
+    /></b-table>
+    <li v-for="pokemon in pokemons" :key="pokemon.name">
+      {{ pokemon.name }}
+      <Pokemon v-bind:pokemonId="pokemon.url" />
+    </li>
   </div>
 </template>
 
 <script lang="ts">
 import axios from "axios";
+import Pokemon from "@/components/Pokemon.vue";
 
 export default {
   name: "FormNickname",
@@ -14,6 +22,9 @@ export default {
       pokemons: [],
       req: this.$route.params.id.length * 10
     };
+  },
+  components: {
+    Pokemon
   },
   methods: {
     loadData() {

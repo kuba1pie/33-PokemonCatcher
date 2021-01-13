@@ -14,7 +14,7 @@ const routes = [
     path: "/catcher/:id",
     name: "Catcher",
     component: () =>
-    import(/* webpackChunkName: "about" */ "../components/Catcher.vue")
+    import(/* webpackChunkName: "about" */ "../views/Catcher.vue")
   },
   {
     path: "/about",
