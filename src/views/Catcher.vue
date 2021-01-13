@@ -6,23 +6,29 @@
       v-bind:pokemonUrl="pokemon.url"
       :key="pokemon.name"
     />
+    <Catchem />
   </div>
 </template>
 
 <script lang="ts">
 import axios from "axios";
 import Pokemon from "@/components/Pokemon.vue";
+import Catchem from "@/components/Catchem.vue";
 
 export default {
-  name: "FormNickname",
+  name: "Catcher",
   data: function() {
     return {
       pokemons: [],
-      req: this.$route.params.id.length * 10
+      foo: "123"
     };
   },
   components: {
-    Pokemon
+    Pokemon,
+    Catchem
+  },
+  state: {
+    poks: 0
   },
   methods: {
     loadData() {
@@ -30,10 +36,16 @@ export default {
         .get("https://pokeapi.co/api/v2/pokemon?limit=5&offset=" + this.req)
         .then(response => {
           this.pokemons = response.data.results;
+          this.$store.commit("increment");
         })
         .catch(e => {
-          this.errors.push(e);
+          //this.errors.push(e);
         });
+    }
+  },
+  mutations: {
+    increment(state) {
+      state.count++;
     }
   },
   mounted() {

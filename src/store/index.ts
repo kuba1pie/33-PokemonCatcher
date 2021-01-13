@@ -4,8 +4,12 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
+  state: {pokes: [],  print: { nickname: "123", pokemons: [] }},
+  mutations: {increment (state, payload) {
+    state.pokes.push(payload.item)
+  },increment2 (state, payload) {
+    state.print.pokemons.push(payload.item)
+  }},
   actions: {},
   modules: {}
 });
