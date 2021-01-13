@@ -1,5 +1,5 @@
 <template>
-  <div class="Pokemon">
+  <div class="Pokemon item">
     Pokemon: {{ single.name }} <br />
     <img :src="single.artwork" />
   </div>
@@ -30,21 +30,11 @@ export default {
           this.single.name = response.data.name; //Upper-case, hyphens replaced with spaces
           this.single.artwork =
             response.data.sprites.other["official-artwork"].front_default;
-          this.single.stats = [
-            // loop
-            {
-              name: x[0].stat.name,
-              value: x[0].base_stat
-            },
-            {
-              name: x[1].stat.name,
-              value: x[1].base_stat
-            },
-            {
-              name: x[2].stat.name,
-              value: x[2].base_stat
-            }
-          ];
+          this.single.stats = x.map(y => ({
+            name: y.stat.name,
+            value: y.base_stat
+          }));
+          console.log(this.single.stats);
         })
         .catch(e => {
           this.errors.push(e);

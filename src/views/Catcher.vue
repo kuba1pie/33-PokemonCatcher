@@ -1,9 +1,11 @@
 <template>
-  <div id="FormNickname">
-    Hello, {{ this.$route.params.id }}!
-    <div v-for="pokemon in pokemons" :key="pokemon.name">
-      <Pokemon v-bind:pokemonUrl="pokemon.url" />
-    </div>
+  <div id="Catcher" class="wrapper">
+    <p>Hello, {{ this.$route.params.id }}!</p>
+    <Pokemon
+      v-for="pokemon in pokemons"
+      v-bind:pokemonUrl="pokemon.url"
+      :key="pokemon.name"
+    />
   </div>
 </template>
 
@@ -39,3 +41,13 @@ export default {
   }
 };
 </script>
+<style lang="sass">
+.wrapper
+  display: flex
+  flex-flow: row
+  flex-wrap: wrap
+  .item
+    width: 200px
+    img
+      width: 100%
+</style>
