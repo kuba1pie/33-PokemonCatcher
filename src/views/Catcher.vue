@@ -1,12 +1,14 @@
 <template>
-  <div id="Catcher" class="wrapper">
+  <div id="Catcher" class="Wrapper">
     <p>Hello, {{ this.$route.params.id }}!</p>
-    <Pokemon
-      v-for="pokemon in pokemons"
-      v-bind:pokemonUrl="pokemon.url"
-      :key="pokemon.name"
-    />
-    <Catchem />
+    <div class="Row">
+      <Pokemon
+        v-for="pokemon in pokemons"
+        v-bind:pokemonUrl="pokemon.url"
+        :key="pokemon.name"
+      />
+    </div>
+    <div class="Row"><Catchem /></div>
   </div>
 </template>
 
@@ -39,7 +41,7 @@ export default {
           this.$store.commit("increment");
         })
         .catch(e => {
-          //this.errors.push(e);
+          this.errors.push(e);
         });
     }
   },
@@ -53,13 +55,3 @@ export default {
   }
 };
 </script>
-<style lang="sass">
-.wrapper
-  display: flex
-  flex-flow: row
-  flex-wrap: wrap
-  .item
-    width: 200px
-    img
-      width: 100%
-</style>

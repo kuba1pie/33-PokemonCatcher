@@ -1,6 +1,6 @@
 <template>
-  <div class="Pokemon item">
-    Pokemon: {{ single.name }} <br />
+  <div class="Pokemon Item">
+    <h2>{{ single.name }}</h2>
     <img :src="single.artwork" />
   </div>
 </template>
