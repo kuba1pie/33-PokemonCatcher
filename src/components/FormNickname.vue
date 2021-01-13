@@ -1,16 +1,16 @@
 <template>
-  <div id="HelloWorld">
+  <div id="FormNickname">
     <b-form>
       <b-form-group id="input-name" label label-for="input-name" description>
         <b-form-input
           id="input-0"
-          v-model="name"
+          v-model="nickname"
           type="text"
           placeholder="Name"
         ></b-form-input>
       </b-form-group>
     </b-form>
-    <b-button type="submit" @click="onSubmit()" variant="primary"
+    <b-button type="submit" @click="postPost" variant="primary"
       >Submit</b-button
     >
   </div>
@@ -20,23 +20,25 @@
 import axios from "axios";
 
 export default {
-  name: "HelloWord",
+  name: "FormNickname",
+  data: function() {
+    return { nickname: "" };
+  },
   methods: {
-    onSubmit: function() {
-      axios({
-        method: "get",
-        url: "https://pokeapi.co/api/v2/pokemon?limit=5&offset=10",
-      }).then(function(response) {
-        console.log(response.data.results);
-      });
-    },
-  },
-  props: {
-    name: {
-      default: "",
-      type: String,
-    },
-  },
+    postPost() {
+      axios
+        .get(
+          "https://pokeapi.co/api/v2/pokemon?limit=5&offset=" +
+            this.nickname.length * 10
+        )
+        .then(response => {
+          console.log(response.data.results);
+        })
+        .catch(e => {
+          this.errors.push(e);
+        });
+    }
+  }
 };
 </script>
 
