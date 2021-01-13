@@ -20,10 +20,15 @@ export default {
         const n = this.pokemons[i];
         if (Math.random() >= 0.5) {
           this.$store.commit("increment2", { item: n });
+          console.log(this.nick)
+          this.$store.commit("increment3", { item: this.nick });
         }
       }
       console.log(this.$store.state.print);
     }
+  },
+  props: {
+    nick: String
   }
 };
 </script>

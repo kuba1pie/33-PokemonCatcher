@@ -8,7 +8,7 @@
         :key="pokemon.name"
       />
     </div>
-    <div class="Row"><Catchem /></div>
+    <div class="Row"><Catchem v-bind:name="12"/></div>
   </div>
 </template>
 
