@@ -34,7 +34,7 @@ export default {
             name: y.stat.name,
             value: y.base_stat
           }));
-          this.$store.commit("increment", { item: this.single });
+          this.$store.commit("resultToState", { item: this.single });
         })
         .catch(e => {
           this.errors.push(e);

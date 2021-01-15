@@ -38,7 +38,7 @@ export default {
         .get("https://pokeapi.co/api/v2/pokemon?limit=5&offset=" + this.req)
         .then(response => {
           this.pokemons = response.data.results;
-          this.$store.commit("increment");
+          this.$store.commit("resultToState");
         })
         .catch(e => {
           this.errors.push(e);
@@ -46,7 +46,7 @@ export default {
     }
   },
   mutations: {
-    increment(state) {
+    resultToState(state) {
       state.count++;
     }
   },

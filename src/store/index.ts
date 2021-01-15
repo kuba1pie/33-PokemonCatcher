@@ -6,13 +6,13 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: { pokes: [], print: { nickname: "123", pokemons: [] } },
   mutations: {
-    increment(state, payload) {
+    resultToState(state, payload) {
       state.pokes.push(payload.item);
     },
-    increment2(state, payload) {
+    pokemonToState(state, payload) {
       state.print.pokemons.push(payload.item);
     },
-    increment3(state, payload) {
+    nickToState(state, payload) {
       state.print.nickname = (payload.item);
     }
   },
