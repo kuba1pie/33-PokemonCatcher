@@ -1,6 +1,7 @@
 <template>
   <div id="Catcher" class="Wrapper">
     <p>Hello, {{ this.$route.params.id }}!</p>
+    <p>You can catch them!</p>
     <div class="Row">
       <Pokemon
         v-for="pokemon in pokemons"
@@ -8,7 +9,7 @@
         :key="pokemon.name"
       />
     </div>
-    <div class="Row"><Catchem v-bind:name="12"/></div>
+    <div class="Row"><Catchem /></div>
   </div>
 </template>
 
@@ -22,7 +23,7 @@ export default {
   data: function() {
     return {
       pokemons: [],
-      foo: "123"
+      errors: []
     };
   },
   components: {
@@ -35,19 +36,17 @@ export default {
   methods: {
     loadData() {
       axios
-        .get("https://pokeapi.co/api/v2/pokemon?limit=5&offset=" + this.req)
+        .get(
+          "https://pokeapi.co/api/v2/pokemon?limit=5&offset=" +
+            this.$route.params.id.length * 10
+        )
         .then(response => {
           this.pokemons = response.data.results;
           this.$store.commit("resultToState");
         })
         .catch(e => {
-          this.errors.push(e);
+          this.errors.push("Error Axios");
         });
-    }
-  },
-  mutations: {
-    resultToState(state) {
-      state.count++;
     }
   },
   mounted() {

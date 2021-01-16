@@ -1,6 +1,6 @@
 <template>
-  <div id="Catchem" class="wrapper">
-    <button v-on:click="greet">Catch'em</button>
+  <div id="Catchem">
+    <button v-on:click="greet">Catch'em!</button>
   </div>
 </template>
 
@@ -25,6 +25,7 @@ export default {
         }
       }
       console.log(this.$store.state.print);
+      alert("Check the console!");
     }
   }
 };

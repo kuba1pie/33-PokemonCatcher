@@ -1,13 +1,21 @@
 <template>
-  <div id="FormNickname">
-    <form action="">
-      <label for="input"
-        ><input type="text" id="input-0" v-model="nickname" placeholder="Name"
-      /></label>
+  <div id="FormNickname" class="Wrapper">
+    <p>Type your nickname:</p>
+    <form class="Item" @submit="checkForm">
+      <label for="nickname">Nickname:</label>
+      <input
+        name="nickname"
+        type="text"
+        id="nickname"
+        v-model="nickname"
+        placeholder="Nickname"
+      />
+      <p v-if="error" class="Error">
+        <b>Please correct the following error:</b><br />
+        {{ error }}
+      </p>
+      <input type="submit" value="Continue" class="Button" />
     </form>
-    <router-link :to="`/catcher/` + this.nickname">
-      <button>Continue</button></router-link
-    >
   </div>
 </template>
 
@@ -15,10 +23,20 @@
 export default {
   name: "FormNickname",
   data: function() {
-    return { nickname: "" };
+    return { nickname: null, error: null };
   },
-  props: {
-    pokemons: Object
+  methods: {
+    checkForm: function(e) {
+      if (this.nickname) {
+        this.$router.push({ name: "Catcher", params: { id: this.nickname } });
+      }
+
+      if (!this.nickname) {
+        this.error = "Nickname is required";
+      }
+
+      e.preventDefault();
+    }
   }
 };
 </script>

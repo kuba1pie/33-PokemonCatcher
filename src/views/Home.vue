@@ -1,12 +1,10 @@
 <template>
-  <div class="home">
-    <FormNickname msg="Welcome to Your Vue.js + TypeScript App" />
-  </div>
+  <FormNickname />
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import FormNickname from "@/components/FormNickname.vue"; // @ is an alias to /src
+import FormNickname from "@/components/FormNickname.vue";
 
 @Component({
   components: {

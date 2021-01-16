@@ -1,7 +1,7 @@
 <template>
   <div class="Pokemon Item">
-    <h2>{{ single.name }}</h2>
     <img :src="single.artwork" />
+    <h2>{{ single.nameToShow }}</h2>
   </div>
 </template>
 
@@ -13,8 +13,10 @@ export default {
   data: function() {
     return {
       pokemon: [],
+      errors: [],
       single: {
         name: String,
+        nameToShow: String,
         artwork: String,
         stats: [{ name: "" }, { value: 0 }]
       }
@@ -26,8 +28,10 @@ export default {
         .get(this.pokemonUrl)
         .then(response => {
           const x = response.data.stats;
-          this.pokemon = response.data.stats; // Delete
           this.single.name = response.data.name; //Upper-case, hyphens replaced with spaces
+          this.single.nameToShow = this.single.name
+            .replace("-", " ")
+            .toUpperCase();
           this.single.artwork =
             response.data.sprites.other["official-artwork"].front_default;
           this.single.stats = x.map(y => ({
