@@ -1,21 +1,40 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import axios from "axios";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: { pokes: [], print: { nickname: "123", pokemons: [] } },
+  state: { pokes: [], savedPokemons: [], nickname: "", catchedPokemons: [] },
   mutations: {
-    resultToState(state, payload) {
-      state.pokes.push(payload.item);
+    SAVE_POKEMON(state, payload) {
+      state.savedPokemons.push(payload);
     },
-    pokemonToState(state, payload) {
-      state.print.pokemons.push(payload.item);
+    RESET_POKEMONS(state) {
+      state.savedPokemons = [];
+      state.catchedPokemons = [];
     },
-    nickToState(state, payload) {
-      state.print.nickname = (payload.item);
+    CATCH_POKEMON(state, payload) {
+      state.catchedPokemons.push(payload);
+    },
+    SAVE_NICKNAME(state, payload) {
+      state.nickname = payload;
+    },
+    SAVE_ALL_POKEMONS(state, payload) {
+      state.pokes = payload;
     }
   },
-  actions: {},
-  modules: {}
+  actions: {
+    async fetchPokemons(context, payload) {
+      context.commit("RESET_POKEMONS");
+      return axios
+        .get(
+          "https://pokeapi.co/api/v2/pokemon?limit=5&offset=" + payload.length
+        )
+        .then(response => {
+          const links = response.data.results.map(y => y.url);
+          context.commit("SAVE_ALL_POKEMONS", links);
+        });
+    }
+  }
 });

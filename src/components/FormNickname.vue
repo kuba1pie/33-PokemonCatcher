@@ -7,7 +7,7 @@
         name="nickname"
         type="text"
         id="nickname"
-        v-model="nickname"
+        v-model="nickname2"
         placeholder="Nickname"
       />
       <p v-if="error" class="Error">
@@ -20,18 +20,24 @@
 </template>
 
 <script lang="ts">
+import { mapMutations, mapState } from "vuex";
 export default {
   name: "FormNickname",
   data: function() {
-    return { nickname: null, error: null };
+    return { nickname2: null, error: null };
+  },
+  computed: {
+    ...mapState(["nickname"])
   },
   methods: {
+    ...mapMutations(["SAVE_NICKNAME"], ["RESET"]),
     checkForm: function(e) {
-      if (this.nickname) {
-        this.$router.push({ name: "Catcher", params: { id: this.nickname } });
+      if (this.nickname2) {
+        this.SAVE_NICKNAME(this.nickname2);
+        this.$router.push({ name: "Catcher" });
       }
 
-      if (!this.nickname) {
+      if (!this.nickname2) {
         this.error = "Nickname is required";
       }
 

@@ -38,7 +38,7 @@ export default {
             name: y.stat.name,
             value: y.base_stat
           }));
-          this.$store.commit("resultToState", { item: this.single });
+          this.$store.commit("SAVE_POKEMON", this.single);
         })
         .catch(e => {
           this.errors.push(e);

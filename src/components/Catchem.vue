@@ -5,27 +5,27 @@
 </template>
 
 <script lang="ts">
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "Catchem",
   data: function() {
-    return {
-      pokemons: [],
-      nick: this.$route.params.id
-    };
+    return { nickname: this.nickname };
+  },
+  computed: {
+    ...mapState(["savedPokemons"], ["nickname"], ["catchedPokemons"])
   },
   methods: {
+    ...mapMutations(["CATCH_POKEMON"]),
     greet: function() {
       console.clear();
-      this.pokemons = this.$store.state.pokes;
-      for (let i = 0; i < this.pokemons.length; i++) {
-        const n = this.pokemons[i];
+      for (let i = 0; i < this.savedPokemons.length; i++) {
+        const n = this.savedPokemons[i];
         if (Math.random() >= 0.5) {
-          this.$store.commit("pokemonToState", { item: n });
-          this.$store.commit("nickToState", { item: this.nick });
+          this.CATCH_POKEMON(n);
         }
       }
-      console.log(this.$store.state.print);
-      alert("Check the console!");
+      console.log({ pokemons: this.catchedPokemons });
+      //alert("Check the console!");
     }
   }
 };
