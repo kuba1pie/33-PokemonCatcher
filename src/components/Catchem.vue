@@ -1,6 +1,7 @@
 <template>
   <div id="Catchem">
     <button v-on:click="greet">Catch'em!</button>
+    {{ nickname }}
   </div>
 </template>
 
@@ -9,7 +10,8 @@ import { mapState, mapMutations } from "vuex";
 export default {
   name: "Catchem",
   data: function() {
-    return { nickname: this.nickname };
+    const nickname: string = this.nickname;
+    return { nickname };
   },
   computed: {
     ...mapState(["savedPokemons"], ["nickname"], ["catchedPokemons"])
