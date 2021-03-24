@@ -1,0 +1,116 @@
+$yellow: #ffcc00
+$dark_yellow: #c8a102
+$blue: #2873b9
+$dark_blue: #17285e
+@font-face
+  font-family: 'Pokemon Solid'
+  src: url("Pokemon Solid.ttf") format("truetype")
+@import url('https://fonts.googleapis.com/css2?family=Kufam:wght@600&display=swap')
+
+html
+  margin: 0 auto
+  font-family: 'Kufam', cursive
+  body
+    margin: 0 auto
+    #app
+      nav
+        border: 2px solid $dark_blue
+        display: flex
+        flex-flow: row wrap
+        background-color: $yellow
+        margin: 0 auto
+        justify-content: center
+        align-items: center
+        a
+          display: block
+      main
+        .Wrapper
+          margin: 2em 1em 100px 1em
+          display: flex
+          flex-flow: column
+          .Row
+            display: flex
+            margin: 0 auto
+            flex-flow: row wrap
+            gap: 3em
+            justify-content: space-around
+            align-items: center
+            .Item
+              border: 2px solid $dark_blue
+              box-shadow: 6px 6px 2px $dark_yellow
+              border-radius: 10px
+              margin: 10px
+              background-color: $yellow
+              img
+                max-width: 300px
+                display: block
+                margin: 0 auto
+                padding: 5px
+              h2
+                text-align: center
+                color: $blue
+                padding: 0px
+                letter-spacing: 8px
+                margin: 0px
+                font-size: 30px
+                text-shadow: 2px 2px $dark_blue
+                font-family: 'Pokemon Solid', cursive
+      footer
+        position: fixed
+        left: 0
+        bottom: 0
+        width: 100%
+        padding: 0.4em
+        font-size: 1.5em
+        background-color: $blue
+        color: $dark_blue
+        text-align: center
+        border: 2px solid $dark_blue
+        p
+          margin: 0px
+          padding: 0px
+        a:link, a:visited, a:hover, a:active
+          text-decoration: none
+          color: $yellow
+        a:hover
+          color: $dark_yellow
+
+      button, .Button, nav > a, main > a
+        background-color: $dark_blue
+        border: none
+        color: $yellow
+        padding: 0.5em 1em
+        margin: 0.3em 1em
+        text-align: center
+        text-decoration: none
+        display: inline-block
+        font-size: 30px
+        border-radius: 15px
+        &:hover
+          background-color: $blue
+          box-shadow: 3px 3px $yellow
+      form
+        font-size: 2em
+        margin: 0 auto
+        text-align: center
+        input
+          margin: 10px auto
+          padding: 5px
+          display: block
+          font-size: 40px
+        label
+          display: none
+      p
+        margin: 0 auto
+        padding: 20px
+        font-size: 2em
+      .About
+        text-align: center
+        h2
+          font-size: 3em
+        h1
+          padding-top: 2em
+        p
+          padding-bottom: 0px
+        ul          
+          margin: 0px
